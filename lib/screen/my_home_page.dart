@@ -33,7 +33,6 @@ class _HomePageState extends ConsumerState<HomePage> {
     final response = ref.watch(jsonNotifierProvider);
     resultantMap = {};
     // int count = 0;
-    // final list = ref.read(jsonProvider).list;
 
     // print("The output is $list");
     // final resultMap = mapData(list);

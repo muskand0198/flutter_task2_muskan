@@ -24,7 +24,3 @@ class JsonNotifier extends _$JsonNotifier{
     return list;
   }
 }
-
-// final jsonProvider = StateNotifierProvider<JsonNotifier, Future<List<MyData>>>((ref){
-//   return JsonNotifier([]);
-// });
