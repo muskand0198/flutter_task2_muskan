@@ -12,6 +12,8 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  MyMap resultantMap = MyMap();
+
   @override
   void initState() {
     super.initState();
@@ -29,7 +31,6 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     final response = ref.watch(jsonNotifierProvider);
-    MyMap resultantMap = MyMap();
 
     return Scaffold(
         appBar: AppBar(
