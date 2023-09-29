@@ -30,7 +30,6 @@ class CustomCard extends StatelessWidget {
           ],
         ),),
       ),
-      // child: Text(slug),
     );
   }
 }

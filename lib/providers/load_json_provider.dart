@@ -7,10 +7,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'load_json_provider.g.dart';
 
 @riverpod
-class JsonNotifier extends _$JsonNotifier{
-
+class JsonNotifier extends _$JsonNotifier {
   @override
-  FutureOr<List<MyData>?> build(){
+  FutureOr<List<MyData>?> build() {
     return null;
   }
 
