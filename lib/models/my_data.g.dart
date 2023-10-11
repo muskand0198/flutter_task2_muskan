@@ -21,6 +21,9 @@ _$_MyData _$$_MyDataFromJson(Map<String, dynamic> json) => _$_MyData(
       image: json['image'] as List<dynamic>?,
       status: json['status'] as bool?,
       createDate: json['create_date'] as String,
+      children: (json['children'] as List<dynamic>?)
+          ?.map((e) => MyData.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_MyDataToJson(_$_MyData instance) => <String, dynamic>{
@@ -38,4 +41,5 @@ Map<String, dynamic> _$$_MyDataToJson(_$_MyData instance) => <String, dynamic>{
       'image': instance.image,
       'status': instance.status,
       'create_date': instance.createDate,
+      'children': instance.children,
     };

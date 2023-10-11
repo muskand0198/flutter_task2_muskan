@@ -35,6 +35,7 @@ mixin _$MyData {
   bool? get status => throw _privateConstructorUsedError;
   @JsonKey(name: "create_date")
   String get createDate => throw _privateConstructorUsedError;
+  List<MyData>? get children => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,7 +61,8 @@ abstract class $MyDataCopyWith<$Res> {
       String? icon,
       List<dynamic>? image,
       bool? status,
-      @JsonKey(name: "create_date") String createDate});
+      @JsonKey(name: "create_date") String createDate,
+      List<MyData>? children});
 }
 
 /// @nodoc
@@ -90,6 +92,7 @@ class _$MyDataCopyWithImpl<$Res, $Val extends MyData>
     Object? image = freezed,
     Object? status = freezed,
     Object? createDate = null,
+    Object? children = freezed,
   }) {
     return _then(_value.copyWith(
       categoryId: null == categoryId
@@ -148,6 +151,10 @@ class _$MyDataCopyWithImpl<$Res, $Val extends MyData>
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as String,
+      children: freezed == children
+          ? _value.children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<MyData>?,
     ) as $Val);
   }
 }
@@ -172,7 +179,8 @@ abstract class _$$_MyDataCopyWith<$Res> implements $MyDataCopyWith<$Res> {
       String? icon,
       List<dynamic>? image,
       bool? status,
-      @JsonKey(name: "create_date") String createDate});
+      @JsonKey(name: "create_date") String createDate,
+      List<MyData>? children});
 }
 
 /// @nodoc
@@ -199,6 +207,7 @@ class __$$_MyDataCopyWithImpl<$Res>
     Object? image = freezed,
     Object? status = freezed,
     Object? createDate = null,
+    Object? children = freezed,
   }) {
     return _then(_$_MyData(
       categoryId: null == categoryId
@@ -257,13 +266,17 @@ class __$$_MyDataCopyWithImpl<$Res>
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as String,
+      children: freezed == children
+          ? _value._children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<MyData>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_MyData implements _MyData {
+class _$_MyData extends _MyData {
   const _$_MyData(
       {required this.categoryId,
       final List<dynamic>? name,
@@ -278,9 +291,12 @@ class _$_MyData implements _MyData {
       this.icon,
       final List<dynamic>? image,
       this.status,
-      @JsonKey(name: "create_date") required this.createDate})
+      @JsonKey(name: "create_date") required this.createDate,
+      final List<MyData>? children})
       : _name = name,
-        _image = image;
+        _image = image,
+        _children = children,
+        super._();
 
   factory _$_MyData.fromJson(Map<String, dynamic> json) =>
       _$$_MyDataFromJson(json);
@@ -330,10 +346,19 @@ class _$_MyData implements _MyData {
   @override
   @JsonKey(name: "create_date")
   final String createDate;
+  final List<MyData>? _children;
+  @override
+  List<MyData>? get children {
+    final value = _children;
+    if (value == null) return null;
+    if (_children is EqualUnmodifiableListView) return _children;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'MyData(categoryId: $categoryId, name: $name, slug: $slug, description: $description, parentID: $parentID, type: $type, attributeSet: $attributeSet, categoryNumber: $categoryNumber, level: $level, featured: $featured, icon: $icon, image: $image, status: $status, createDate: $createDate)';
+    return 'MyData(categoryId: $categoryId, name: $name, slug: $slug, description: $description, parentID: $parentID, type: $type, attributeSet: $attributeSet, categoryNumber: $categoryNumber, level: $level, featured: $featured, icon: $icon, image: $image, status: $status, createDate: $createDate, children: $children)';
   }
 
   @override
@@ -361,7 +386,8 @@ class _$_MyData implements _MyData {
             const DeepCollectionEquality().equals(other._image, _image) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createDate, createDate) ||
-                other.createDate == createDate));
+                other.createDate == createDate) &&
+            const DeepCollectionEquality().equals(other._children, _children));
   }
 
   @JsonKey(ignore: true)
@@ -381,7 +407,8 @@ class _$_MyData implements _MyData {
       icon,
       const DeepCollectionEquality().hash(_image),
       status,
-      createDate);
+      createDate,
+      const DeepCollectionEquality().hash(_children));
 
   @JsonKey(ignore: true)
   @override
@@ -397,23 +424,24 @@ class _$_MyData implements _MyData {
   }
 }
 
-abstract class _MyData implements MyData {
+abstract class _MyData extends MyData {
   const factory _MyData(
-          {required final String categoryId,
-          final List<dynamic>? name,
-          required final String slug,
-          required final String description,
-          required final String parentID,
-          final int? type,
-          final String? attributeSet,
-          final int? categoryNumber,
-          required final int level,
-          final bool? featured,
-          final String? icon,
-          final List<dynamic>? image,
-          final bool? status,
-          @JsonKey(name: "create_date") required final String createDate}) =
-      _$_MyData;
+      {required final String categoryId,
+      final List<dynamic>? name,
+      required final String slug,
+      required final String description,
+      required final String parentID,
+      final int? type,
+      final String? attributeSet,
+      final int? categoryNumber,
+      required final int level,
+      final bool? featured,
+      final String? icon,
+      final List<dynamic>? image,
+      final bool? status,
+      @JsonKey(name: "create_date") required final String createDate,
+      final List<MyData>? children}) = _$_MyData;
+  const _MyData._() : super._();
 
   factory _MyData.fromJson(Map<String, dynamic> json) = _$_MyData.fromJson;
 
@@ -446,6 +474,8 @@ abstract class _MyData implements MyData {
   @override
   @JsonKey(name: "create_date")
   String get createDate;
+  @override
+  List<MyData>? get children;
   @override
   @JsonKey(ignore: true)
   _$$_MyDataCopyWith<_$_MyData> get copyWith =>

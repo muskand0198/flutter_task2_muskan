@@ -16,7 +16,6 @@ class JsonNotifier extends _$JsonNotifier {
   Future<List<MyData>?> loadDataFromAssets() async {
     state = const AsyncValue.loading();
     final data = await rootBundle.loadString("assets/data.json");
-
     final jsonData = jsonDecode(data) as List<dynamic>;
     final list = jsonData.map((e) => MyData.fromJson(e)).toList();
     state = AsyncValue.data(list);
