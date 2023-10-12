@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_task2_muskan/providers/locale_providers.dart';
 import 'package:flutter_task2_muskan/screen/my_home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreferences = await SharedPreferences.getInstance();
+
+  runApp(ProviderScope(
+      overrides: [
+        sharedPrefs.overrideWithValue(sharedPreferences),
+      ],
+      child: const MyApp()));
 }
 
 class MyApp extends ConsumerWidget {

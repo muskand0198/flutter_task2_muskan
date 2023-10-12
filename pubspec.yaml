@@ -41,10 +41,11 @@ dependencies:
   freezed: ^2.4.1
   json_annotation: ^4.8.1
   build_runner: ^2.3.3
+  shared_preferences: ^2.2.0
   flutter_riverpod: ^2.3.3
   riverpod_generator: ^2.1.0
   riverpod_annotation: ^2.1.5
-
+  toggle_switch: ^2.1.0
 
 dev_dependencies:
   flutter_test:

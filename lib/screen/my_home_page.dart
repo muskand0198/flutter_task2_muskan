@@ -1,8 +1,8 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_task2_muskan/providers/locale_providers.dart';
 import 'package:flutter_task2_muskan/screen/components/custom_card.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import '../models/my_data.dart';
 import '../providers/load_json_provider.dart';
 
@@ -20,9 +20,6 @@ class _HomePageState extends ConsumerState<HomePage>
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(jsonNotifierProvider.notifier).loadDataFromAssets();
-      PlatformDispatcher.instance.onLocaleChanged = () {
-        ref.invalidate(localeProvider);
-      };
     });
   }
 
@@ -31,12 +28,14 @@ class _HomePageState extends ConsumerState<HomePage>
     super.dispose();
     ref.invalidate(jsonNotifierProvider);
     ref.invalidate(localeProvider);
+    ref.invalidate(sharedPrefs);
   }
 
   @override
   Widget build(BuildContext context) {
     final response = ref.watch(jsonNotifierProvider);
     final locale = ref.watch(localeProvider);
+    final list = ["en", "hi"];
 
     return Scaffold(
         appBar: AppBar(
@@ -45,6 +44,20 @@ class _HomePageState extends ConsumerState<HomePage>
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.blue,
+          actions: [
+            ToggleSwitch(
+              initialLabelIndex:
+                  ref.read(localeProvider.notifier).getLanguage() == "hi"
+                      ? 1
+                      : 0,
+              totalSwitches: 2,
+              labels: const ['En', 'Hi'],
+              inactiveFgColor: Colors.white,
+              onToggle: (index) {
+                ref.read(localeProvider.notifier).toggle(list[index!]);
+              },
+            ),
+          ],
         ),
         body: response.when(data: (data) {
           if (data != null) {
